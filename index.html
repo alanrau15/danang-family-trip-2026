@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="2026/09/25–09/28 峴港家庭旅遊行程，含航班、餐廳、會安古城、會安印象秀、巴拿山與私人泳池 BBQ。" />
+  <meta name="description" content="2026/09/25–09/28 峴港家庭旅遊行程，含航班、餐廳、會安古城、會安印象秀、巴拿山與飯店晚餐。" />
   <meta name="theme-color" content="#20333a" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="2026 峴港家庭旅行｜9/25–9/28" />
-  <meta property="og:description" content="11 人家庭旅行：峴港市區、會安古城、VIP 印象秀、巴拿山與私人泳池 BBQ。" />
+  <meta property="og:description" content="11 人家庭旅行：峴港市區、會安古城、會安印象秀、巴拿山與飯店晚餐。" />
   <meta property="og:url" content="https://alanrau15.github.io/danang-family-trip-2026/" />
   <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:Redirect/file/Hoi_An_by_night.jpg?width=1200" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -423,6 +423,49 @@
       padding-inline: 10px;
       background: var(--soft-coral);
     }
+    .sub-itinerary {
+      margin-top: 12px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfdfc;
+    }
+    .sub-itinerary summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      color: var(--ocean-dark);
+      font-weight: 900;
+      cursor: pointer;
+      list-style: none;
+    }
+    .sub-itinerary summary::-webkit-details-marker { display: none; }
+    .sub-itinerary summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .sub-itinerary[open] summary::after { content: "−"; }
+    .sub-list { border-top: 1px solid var(--line); }
+    .sub-item {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: 12px;
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .sub-item:last-child { border-bottom: 0; }
+    .sub-item time {
+      color: var(--ocean-dark);
+      font-size: 0.88rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .sub-item strong { font-size: 0.96rem; }
+    .sub-item span { font-size: 0.86rem; }
 
     .note {
       margin-top: 14px;
@@ -516,6 +559,7 @@
       }
       .timeline li { grid-template-columns: 72px minmax(0, 1fr); }
       .timeline b { display: none; }
+      .sub-item { grid-template-columns: 1fr; gap: 4px; }
       .timeline strong,
       .timeline span,
       .booking p { overflow-wrap: anywhere; }
@@ -552,7 +596,7 @@
       <nav class="nav" aria-label="行程導覽">
         <a href="#day1"><b>9/25</b><span>抵達、市區與 MOC 海鮮</span></a>
         <a href="#day2"><b>9/26</b><span>飯店、會安與印象秀</span></a>
-        <a href="#day3"><b>9/27</b><span>巴拿山、按摩與 BBQ</span></a>
+        <a href="#day3"><b>9/27</b><span>巴拿山、按摩與飯店晚餐</span></a>
         <a href="#day4"><b>9/28</b><span>退房返回台灣</span></a>
         <a href="#bookings"><b>訂位</b><span>航班、餐廳與活動總覽</span></a>
         <a href="#reminders"><b>提醒</b><span>行前確認與長輩照顧</span></a>
@@ -582,7 +626,7 @@
 
       <section class="quick-facts" aria-label="行程重點">
         <div class="fact"><b>住宿</b><span>Danang Marriott Resort &amp; Spa｜Four-Bedroom Villa</span></div>
-        <div class="fact"><b>會安重點</b><span>古城、越南麵包、Morning Glory、VIP 印象秀</span></div>
+        <div class="fact"><b>會安重點</b><span>古城、越南麵包、Morning Glory、會安印象秀</span></div>
         <div class="fact"><b>長輩友善</b><span>慢走、冷氣休息、避免爬樓梯與籃船活動</span></div>
         <div class="fact"><b>彈性安排</b><span>巴拿山午餐現場決定；龍橋僅作自由備選</span></div>
       </section>
@@ -604,7 +648,7 @@
             <p>共 11 人<br />逐一核對英文姓名、護照號碼、護照效期與入境文件</p>
           </article>
           <article class="booking">
-            <div class="booking-top"><h3>峴港機場 VIP 快速通關</h3><span class="status pending">待預約</span></div>
+            <div class="booking-top"><h3>峴港機場快速通關</h3><span class="status pending">待預約</span></div>
             <p>共 11 人<br />確認入境、離境或雙向服務，並涵蓋 2 位小孩與 4 位長輩</p>
           </article>
           <article class="booking">
@@ -628,16 +672,16 @@
             <p>9/26 17:30｜11 人<br />室內、低樓層、少階梯、盡量靠窗</p>
           </article>
           <article class="booking">
-            <div class="booking-top"><h3>會安印象秀 VIP</h3><span class="status pending">待購票</span></div>
-            <p>9/26 20:00｜11 張<br />VIP 區自由入座，建議選可免費取消方案</p>
+            <div class="booking-top"><h3>會安印象秀</h3><span class="status pending">待購票</span></div>
+            <p>9/26 20:00｜11 張<br />座位區自由入座，建議選可免費取消方案</p>
           </article>
           <article class="booking">
             <div class="booking-top"><h3>市區按摩</h3><span class="status pending">待預約</span></div>
             <p>9/27 16:00｜11 人<br />需能同時接待並為長輩安排輕柔力道</p>
           </article>
           <article class="booking">
-            <div class="booking-top"><h3>私人別墅泳池 BBQ</h3><span class="status pending">待確認</span></div>
-            <p>9/27 19:00｜11 人<br />選餐、飲料方案、50% 訂金與雨備</p>
+            <div class="booking-top"><h3>飯店晚餐</h3><span class="status pending">待確認</span></div>
+            <p>9/27 19:00｜11 人<br />在飯店用晚餐</p>
           </article>
           <article class="booking">
             <div class="booking-top"><h3>BR384 回程</h3><span class="status">已確認</span></div>
@@ -733,12 +777,12 @@
           <div class="day-date">9/26<br />Sat</div>
           <div>
             <p class="day-kicker">第 2 天｜會安日</p>
-            <h2>飯店慢遊、會安古城與 VIP 印象秀</h2>
+            <h2>飯店慢遊、會安古城與印象秀</h2>
             <p>上午保留度假村時間，下午以冷氣休息點穿插會安慢走。</p>
           </div>
         </div>
         <div class="chips">
-          <span>飯店午餐</span><span>會安古城</span><span>Bánh Mì Phượng</span><span>Morning Glory</span><span>VIP</span>
+          <span>飯店午餐</span><span>會安古城</span><span>Bánh Mì Phượng</span><span>Morning Glory</span><span>印象秀</span>
         </div>
         <div class="route">
           <div>
@@ -769,64 +813,47 @@
             <b>4</b>
           </li>
           <li>
-            <time>12:45–13:30</time>
-            <div><strong>包車前往會安古城</strong><span>請司機停靠方便長輩上下車、靠近洗手間的古城東側入口。</span></div>
+            <time>12:45–17:25</time>
+            <div>
+              <strong>包車前往會安古城</strong>
+              <span>12:45 從飯店出發，約 13:30 抵達；請司機停靠方便長輩上下車、靠近洗手間的古城東側入口。</span>
+              <details class="sub-itinerary">
+                <summary>展開會安古城詳細行程</summary>
+                <div class="sub-list">
+                  <div class="sub-item"><time>13:40–14:25</time><div><strong>福建會館與古城室內文化景點</strong><span>以遮陰、室內景點為主，全程慢走並減少不必要繞路。</span></div></div>
+                  <div class="sub-item"><time>14:30–15:00</time><div><strong>Bánh Mì Phượng 越南麵包</strong><span>建議買 6–7 份切半分享；長輩、小孩可選不辣、少醬、熟食餡料。</span></div></div>
+                  <div class="sub-item"><time>15:00–15:45</time><div><strong>冷氣咖啡館休息</strong><span>避開午後炎熱，補水、上洗手間；實際店家依步行位置選擇。</span></div></div>
+                  <div class="sub-item"><time>15:45–16:15</time><div><strong>日本橋、燈籠街與老街</strong><span>拍照與短程散步為主，不安排長距離購物行走。</span></div></div>
+                  <div class="sub-item"><time>16:15–17:25</time><div><strong>古城自由活動、休息並前往餐廳</strong><span>依長輩體力調整，提早前往餐廳，避免晚餐尖峰趕路。</span></div></div>
+                </div>
+              </details>
+            </div>
             <b>5</b>
-          </li>
-          <li>
-            <time>13:40–14:25</time>
-            <div><strong>福建會館與古城室內文化景點</strong><span>以遮陰、室內景點為主，全程慢走並減少不必要繞路。</span></div>
-            <b>6</b>
-          </li>
-          <li>
-            <time>14:30–15:00</time>
-            <div><strong>Bánh Mì Phượng 越南麵包</strong><span>建議買 6–7 份切半分享，避免影響 17:30 晚餐；長輩、小孩可選不辣、少醬、熟食餡料。</span></div>
-            <b>7</b>
-          </li>
-          <li>
-            <time>15:00–15:45</time>
-            <div><strong>冷氣咖啡館休息</strong><span>避開午後炎熱，補水、上洗手間；實際店家依步行位置選擇。</span></div>
-            <b>8</b>
-          </li>
-          <li>
-            <time>15:45–16:15</time>
-            <div><strong>日本橋、燈籠街與老街</strong><span>拍照與短程散步為主，不安排長距離購物行走。</span></div>
-            <b>9</b>
-          </li>
-          <li>
-            <time>16:30–17:00</time>
-            <div><strong>日本文化展示館茶道表演</strong><span>場次仍需於出發前確認；若取消，直接改成室內咖啡休息。</span></div>
-            <b>10</b>
-          </li>
-          <li>
-            <time>17:00–17:25</time>
-            <div><strong>前往餐廳並稍作休息</strong><span>提早抵達，避免 11 人與長輩在晚餐尖峰趕路。</span></div>
-            <b>11</b>
           </li>
           <li class="pending">
             <time>17:30–18:30</time>
             <div><strong>Morning Glory Signature 晚餐</strong><span>要求室內、低樓層或少階梯、11 人同桌；若有合適位置，優先安排室內窗邊或可看河景座位。</span></div>
-            <b>12</b>
+            <b>6</b>
           </li>
           <li>
             <time>18:30–19:00</time>
             <div><strong>前往 Hoi An Memories Land</strong><span>不安排河上乘船；沿岸燈籠景色視現場人潮短暫欣賞。</span></div>
-            <b>13</b>
+            <b>7</b>
           </li>
           <li>
             <time>19:00–19:45</time>
-            <div><strong>驗票、洗手間與 VIP 入座</strong><span>VIP 不是對號座，建議全員 19:15 前一起進場，優先選中央區；無法同排可安排前後兩排 6+5。</span></div>
-            <b>14</b>
+            <div><strong>驗票、洗手間與入座</strong><span>座位不是對號座，建議全員 19:15 前一起進場，優先選中央區；無法同排可安排前後兩排 6+5。</span></div>
+            <b>8</b>
           </li>
           <li class="pending">
             <time>20:00–21:00</time>
-            <div><strong>會安印象秀 Hoi An Memories Show</strong><span>規劃購買 VIP 席；優先選至少演出前 24 小時可免費取消的票種。</span></div>
-            <b>15</b>
+            <div><strong>會安印象秀 Hoi An Memories Show</strong><span>規劃購票；優先選至少演出前 24 小時可免費取消的票種。</span></div>
+            <b>9</b>
           </li>
           <li>
             <time>21:10–22:00</time>
             <div><strong>包車返回 Danang Marriott Resort &amp; Spa</strong><span>散場後先全員集合，再一起上車。</span></div>
-            <b>16</b>
+            <b>10</b>
           </li>
         </ol>
         <div class="note alert">
@@ -840,12 +867,12 @@
           <div class="day-date">9/27<br />Sun</div>
           <div>
             <p class="day-kicker">第 3 天｜山區與放鬆</p>
-            <h2>巴拿山、按摩與私人泳池 BBQ</h2>
-            <p>上午避開主要人潮上山，下午放鬆按摩，晚上全家在別墅聚餐。</p>
+            <h2>巴拿山、按摩與飯店晚餐</h2>
+            <p>上午避開主要人潮上山，下午放鬆按摩，晚上在飯店用晚餐。</p>
           </div>
         </div>
         <div class="chips">
-          <span>黃金佛手橋</span><span>法國村</span><span>午餐彈性</span><span>按摩</span><span>私人 BBQ</span>
+          <span>黃金佛手橋</span><span>法國村</span><span>午餐彈性</span><span>按摩</span><span>飯店晚餐</span>
         </div>
         <div class="route">
           <div>
@@ -902,12 +929,12 @@
           </li>
           <li>
             <time>17:40–18:20</time>
-            <div><strong>返回飯店、更衣休息</strong><span>預留回房、洗澡與 BBQ 前休息時間。</span></div>
+            <div><strong>返回飯店、更衣休息</strong><span>預留回房、洗澡與晚餐前休息時間。</span></div>
             <b>10</b>
           </li>
-          <li class="pending">
+          <li>
             <time>19:00–21:00</time>
-            <div><strong>Four-Bedroom Villa 私人泳池旁 BBQ</strong><span>由飯店到別墅泳池旁設桌、備餐、現場烹調與服務。需確認餐單、飲料、兒童餐、50% 訂金與雨天室內用餐安排。</span></div>
+            <div><strong>飯店用晚餐</strong></div>
             <b>11</b>
           </li>
         </ol>
@@ -949,7 +976,7 @@
           </li>
           <li>
             <time>09:00</time>
-            <div><strong>辦理退房</strong><span>確認加床、餐飲與私人 BBQ 帳單後再離開櫃檯。</span></div>
+            <div><strong>辦理退房</strong><span>確認加床與餐飲帳單後再離開櫃檯。</span></div>
             <b>3</b>
           </li>
           <li>
@@ -981,9 +1008,9 @@
           <div class="check"><b>包車</b><span>確認 11 人、行李數、每天用車時間、會安與巴拿山等候方式。</span></div>
           <div class="check"><b>飯店房間</b><span>追蹤兩張 rollaway beds 的例外申請與最終費用。</span></div>
           <div class="check"><b>會安晚餐</b><span>確認 Morning Glory 室內低樓層座位、是否有電梯及 18:30 前結帳。</span></div>
-          <div class="check"><b>印象秀 VIP</b><span>購買可取消方案；全員 19:15 前進場，因 VIP 區非對號座。</span></div>
+          <div class="check"><b>印象秀</b><span>購買可取消方案；全員 19:15 前進場，座位區非對號座。</span></div>
           <div class="check"><b>巴拿山</b><span>購買不含自助餐門票；前一晚確認山區天氣與纜車公告。</span></div>
-          <div class="check"><b>私人 BBQ</b><span>確認菜單、兒童年齡、過敏與忌口、飲料方案、訂金及雨備。</span></div>
+          <div class="check"><b>飯店晚餐</b><span>確認 11 人的用餐地點與座位安排。</span></div>
           <div class="check"><b>按摩</b><span>確認可同時接待 11 人、長輩輕柔力道與兒童是否適用。</span></div>
           <div class="check"><b>行動與健康</b><span>攜帶常用藥、防曬、雨具、防滑鞋；每天保留可提早回飯店的彈性。</span></div>
         </div>
