@@ -43,7 +43,128 @@
       overflow-x: hidden;
     }
     a { color: inherit; }
-    button { font: inherit; }
+    button, input { font: inherit; }
+
+    body.auth-locked { min-height: 100vh; }
+    body.auth-locked .shell { display: none; }
+    body:not(.auth-locked) .auth-gate { display: none; }
+    .auth-gate {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      isolation: isolate;
+      padding: 20px;
+      overflow: hidden;
+      background: var(--night);
+    }
+    .auth-gate::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Hoi_An_by_night.jpg?width=1600") center / cover no-repeat;
+    }
+    .auth-gate::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(20, 36, 42, 0.78);
+    }
+    .auth-card {
+      width: min(430px, 100%);
+      padding: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      color: #fff;
+      background: rgba(25, 42, 48, 0.9);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      backdrop-filter: blur(12px);
+    }
+    .auth-kicker {
+      margin: 0;
+      color: var(--sun);
+      font-size: 0.84rem;
+      font-weight: 900;
+    }
+    .auth-card h1 {
+      margin: 8px 0 6px;
+      font-size: clamp(1.8rem, 8vw, 2.45rem);
+      line-height: 1.12;
+    }
+    .auth-card > p:not(.auth-kicker):not(.auth-error):not(.auth-note) {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.74);
+      font-weight: 700;
+    }
+    .auth-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .auth-form label {
+      font-weight: 900;
+    }
+    .password-field {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .password-field:focus-within {
+      border-color: var(--sun);
+      box-shadow: 0 0 0 4px rgba(233, 176, 75, 0.2);
+    }
+    .password-field input {
+      min-width: 0;
+      min-height: 52px;
+      padding: 12px 14px;
+      border: 0;
+      color: var(--ink);
+      background: transparent;
+      outline: none;
+    }
+    .password-field button {
+      min-width: 64px;
+      border: 0;
+      border-left: 1px solid var(--line);
+      color: var(--ocean-dark);
+      background: #f4f8f7;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .unlock-button {
+      min-height: 52px;
+      border: 0;
+      border-radius: 8px;
+      color: #1f2933;
+      background: var(--sun);
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .unlock-button:disabled { opacity: 0.68; cursor: wait; }
+    .auth-error {
+      min-height: 1.5em;
+      margin: 0;
+      color: #ffd2cc;
+      font-size: 0.9rem;
+      font-weight: 900;
+    }
+    .auth-note {
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .auth-noscript {
+      display: block;
+      margin-top: 12px;
+      color: #ffd2cc;
+      font-weight: 800;
+    }
 
     .shell {
       display: grid;
@@ -577,7 +698,7 @@
         background: #fff;
       }
       .side > p { color: var(--muted); }
-      .nav, .side-actions, .route a { display: none; }
+      .auth-gate, .nav, .side-actions, .route a { display: none; }
       .main { padding: 0; }
       .hero {
         min-height: 220px;
@@ -589,7 +710,26 @@
     }
   </style>
 </head>
-<body>
+<body class="auth-locked">
+  <section class="auth-gate" id="auth-gate" aria-labelledby="auth-title">
+    <div class="auth-card">
+      <p class="auth-kicker">私人行程</p>
+      <h1 id="auth-title">輸入密碼</h1>
+      <p>此頁僅供同行親友查看。</p>
+      <form class="auth-form" id="auth-form">
+        <label for="trip-password">密碼</label>
+        <div class="password-field">
+          <input id="trip-password" name="password" type="password" maxlength="20" autocomplete="current-password" autocapitalize="characters" spellcheck="false" required />
+          <button type="button" id="toggle-password" aria-label="顯示密碼">顯示</button>
+        </div>
+        <button class="unlock-button" id="unlock-button" type="submit">開啟行程</button>
+        <p class="auth-error" id="auth-error" role="alert" aria-live="polite"></p>
+      </form>
+      <p class="auth-note">密碼區分英文大小寫。</p>
+      <noscript class="auth-noscript">請開啟瀏覽器的 JavaScript 才能查看行程。</noscript>
+    </div>
+  </section>
+
   <div class="shell">
     <aside class="side">
       <h1>2026 峴港家庭旅行<br />9/25–9/28</h1>
@@ -606,6 +746,7 @@
         <a href="https://alanrau15.github.io/danang-family-trip-2026/" target="_blank" rel="noopener">開啟公開網址</a>
         <a href="#bookings">查看訂位總覽</a>
         <button type="button" onclick="window.print()">列印 / 存成 PDF</button>
+        <button type="button" id="lock-page">鎖定頁面</button>
       </div>
     </aside>
 
@@ -1028,5 +1169,87 @@
       </p>
     </main>
   </div>
+  <script>
+    (() => {
+      const expectedHash = "4b97f9dbb25b9b8c0847d2c06dda29699dfb25fcd40137a72c216f312dc5cc34";
+      const accessKey = "danang-family-trip-access";
+      const body = document.body;
+      const form = document.getElementById("auth-form");
+      const input = document.getElementById("trip-password");
+      const error = document.getElementById("auth-error");
+      const submit = document.getElementById("unlock-button");
+      const toggle = document.getElementById("toggle-password");
+      const lockButton = document.getElementById("lock-page");
+
+      const setAccess = (value) => {
+        try {
+          if (value) sessionStorage.setItem(accessKey, "granted");
+          else sessionStorage.removeItem(accessKey);
+        } catch (_) {}
+      };
+
+      const hasAccess = () => {
+        try { return sessionStorage.getItem(accessKey) === "granted"; }
+        catch (_) { return false; }
+      };
+
+      const unlock = () => {
+        body.classList.remove("auth-locked");
+        document.getElementById("auth-gate").setAttribute("aria-hidden", "true");
+        document.title = "2026 峴港家庭旅行｜9/25–9/28";
+      };
+
+      const lock = () => {
+        setAccess(false);
+        body.classList.add("auth-locked");
+        document.getElementById("auth-gate").removeAttribute("aria-hidden");
+        input.value = "";
+        error.textContent = "";
+        window.scrollTo(0, 0);
+        window.setTimeout(() => input.focus(), 0);
+      };
+
+      const digest = async (value) => {
+        const bytes = new TextEncoder().encode(value);
+        const hash = await crypto.subtle.digest("SHA-256", bytes);
+        return Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, "0")).join("");
+      };
+
+      if (hasAccess()) unlock();
+      else window.setTimeout(() => input.focus(), 0);
+
+      toggle.addEventListener("click", () => {
+        const show = input.type === "password";
+        input.type = show ? "text" : "password";
+        toggle.textContent = show ? "隱藏" : "顯示";
+        toggle.setAttribute("aria-label", show ? "隱藏密碼" : "顯示密碼");
+        input.focus();
+      });
+
+      input.addEventListener("input", () => { error.textContent = ""; });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        submit.disabled = true;
+        error.textContent = "";
+        try {
+          const enteredHash = await digest(input.value.trim());
+          if (enteredHash === expectedHash) {
+            setAccess(true);
+            unlock();
+          } else {
+            error.textContent = "密碼不正確，請再試一次。";
+            input.select();
+          }
+        } catch (_) {
+          error.textContent = "無法驗證密碼，請更新瀏覽器後再試。";
+        } finally {
+          submit.disabled = false;
+        }
+      });
+
+      lockButton.addEventListener("click", lock);
+    })();
+  </script>
 </body>
 </html>
