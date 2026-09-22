@@ -451,6 +451,11 @@
     }
     .sub-itinerary[open] summary::after { content: "−"; }
     .sub-list { border-top: 1px solid var(--line); }
+    .spa-list { margin: 0; padding: 4px 12px; list-style: none; border-top: 1px solid var(--line); }
+    .spa-list li { padding: 12px 0; }
+    .spa-list li + li { border-top: 1px solid var(--line); }
+    .spa-list strong { display: block; overflow-wrap: anywhere; }
+    .spa-list a { display: inline-block; padding: 10px 0; color: var(--ocean-dark); text-decoration: underline; }
     .sub-item {
       display: grid;
       grid-template-columns: 108px minmax(0, 1fr);
@@ -679,7 +684,14 @@
           <article class="booking">
             <div class="booking-top"><h3>市區按摩</h3><span class="status pending">待預約</span></div>
             <p>9/27 16:00｜11 人<br />需能同時接待並為長輩安排輕柔力道</p>
-            <p>候選店家（擇一預約）：<br />1. Luxury Healthy Spa &amp; Massage<br />2. Spa N’healthy<br />3. Julius Spa &amp; Massage</p>
+            <details class="sub-itinerary" id="spa-options" open>
+              <summary>3 家 SPA 候選店家｜點擊展開／收合</summary>
+              <ul class="spa-list">
+                <li><strong>Luxury Healthy Spa &amp; Massage</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Luxury+Healthy+Spa+%26+Massage+Da+Nang" target="_blank" rel="noopener">Google Maps 查看店家</a></li>
+                <li><strong>Spa N’healthy</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Spa+N%27healthy+Da+Nang" target="_blank" rel="noopener">Google Maps 查看店家</a></li>
+                <li><strong>Julius Spa &amp; Massage</strong><a href="https://www.google.com/maps/search/?api=1&amp;query=Julius+Spa+%26+Massage+Da+Nang" target="_blank" rel="noopener">Google Maps 查看店家</a></li>
+              </ul>
+            </details>
           </article>
           <article class="booking">
             <div class="booking-top"><h3>飯店晚餐</h3><span class="status pending">待確認</span></div>
